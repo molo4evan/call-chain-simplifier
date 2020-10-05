@@ -56,7 +56,7 @@ fun printHelp() {
 }
 
 fun parseArgs(args: Array<String>): Triple<Boolean, Boolean, String> {
-    if (args.isEmpty()) Triple(true, false, "")
+    if (args.isEmpty()) return Triple(true, false, "")
 
     return when (args[0]) {
         "-h" -> Triple(true, false, "")
