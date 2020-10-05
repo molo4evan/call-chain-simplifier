@@ -27,12 +27,11 @@ JDK 8 (Oracle JDK, OpenJDK, другой совместимый).
 * Перейдите в директорию build/libs
 * Выполните
   ```
-  java -jar call-chain-simplifier-1.0-SNAPSHOT.jar
+  java -jar call-chain-simplifier-1.0-SNAPSHOT.jar some_source
   ```
-  или
-  ```
-  java -jar call-chain-simplifier-1.0-SNAPSHOT.jar -h
-  ```
-для показа справки по использованию.
+для преобразования some_source.
 # Особенности
 Код в src/main/java/ru/nsu/fit/jbr/simplifier/antlr автоматически сгенерировал с помощью ANTRL4.
+
+В ветке feature/interactive доступна интерактивная версия программы, реализованная изначально. 
+Текущая версия была преобразована из интерактивной для более точного соответствия условиям тестового задания.

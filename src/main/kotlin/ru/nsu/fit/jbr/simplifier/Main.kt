@@ -14,59 +14,22 @@ import ru.nsu.fit.jbr.simplifier.transformation.FilterCreator
 import ru.nsu.fit.jbr.simplifier.transformation.MapCreator
 
 fun main(args: Array<String>) {
-    val (helpNeeded, optimizationDisabled, source) = try {
-        parseArgs(args)
-    } catch (ex: IllegalArgumentException) {
-        println("Passed arguments are invalid: ${ex.message}")
-        return
-    }
-
-    if (helpNeeded) {
-        printHelp()
+    if (args.isEmpty()) {
+        println("NO SOURCE")
         return
     }
 
     val result = try {
-        transform(source, optimizationDisabled)
+        transform(args[0], true)
     } catch (ex: ParseCancellationException) {
-        println("SYNTAX ERROR: ${ex.message}")
+        println("SYNTAX ERROR")
         return
     } catch (ex: IncorrectTypeCancellationException) {
-        println("TYPE ERROR: ${ex.message}")
+        println("TYPE ERROR")
         return
     }
 
-    println("---")
-    println("Source: $source")
-    println("Result: $result")
-    println("---")
-}
-
-fun printHelp() {
-    println("Usage:")
-    println("\t-h -> show this help (help also shows when no args passed).")
-    println("\tanystring -> simplify 'anystring' source with optimization.")
-    println("\t-w anystring -> simplify 'anystring' source without optimization. " +
-                "Please note that it can produce very complex expressions with nonsense parts.")
-    println()
-    println("Possible outputs:")
-    println("\tIn case of successful transformation - transformed source.")
-    println("\tIn case of syntax error in source - SYNTAX ERROR: reason of error.")
-    println("\tIn case of type error in source - TYPE ERROR: reason of error.")
-}
-
-fun parseArgs(args: Array<String>): Triple<Boolean, Boolean, String> {
-    if (args.isEmpty()) return Triple(true, false, "")
-
-    return when (args[0]) {
-        "-h" -> Triple(true, false, "")
-        "-w" -> if (args.size < 2) {
-            throw IllegalArgumentException("No source")
-        } else {
-            Triple(false, true, args[1])
-        }
-        else -> Triple(false, false, args[0])
-    }
+    println(result)
 }
 
 fun transform(source: String, optimizationDisabled: Boolean): String {
