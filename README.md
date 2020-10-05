@@ -34,3 +34,5 @@ JDK 8 (Oracle JDK, OpenJDK, другой совместимый).
   java -jar call-chain-simplifier-1.0-SNAPSHOT.jar -h
   ```
 для показа справки по использованию.
+# Особенности
+Код в src/main/java/ru/nsu/fit/jbr/simplifier/antlr автоматически сгенерировал с помощью ANTRL4.
